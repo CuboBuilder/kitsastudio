@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sCAPTCHA</title>
+    <title>Simple CAPTCHA</title>
     <script>
         function generateCaptcha() {
             let num1 = Math.floor(Math.random() * 10);
@@ -17,7 +17,8 @@
             let correctAnswer = document.getElementById('captchaAnswer').value;
 
             if (userAnswer == correctAnswer) {
-                window.location.href = "https://kitsastudiooffical.github.io/kitsaos";
+                window.location.href = "https://kitsastudiooffical.github.io/";
+                return false;
             } else {
                 alert("Incorrect CAPTCHA. Please try again.");
                 return false;
@@ -28,7 +29,6 @@
     </script>
 </head>
 <body>
-    <p>sCaptcha</p>
     <h2>Enter CAPTCHA</h2>
     <form onsubmit="return validateCaptcha();">
         <p id="captchaQuestion"></p>
