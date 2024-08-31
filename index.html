@@ -1,39 +1,41 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="10;url=https://kitsastudiooffical.github.io">
-    <title>Перенаправление</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.css">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sCAPTCHA</title>
+    <script>
+        function generateCaptcha() {
+            let num1 = Math.floor(Math.random() * 10);
+            let num2 = Math.floor(Math.random() * 10);
+            document.getElementById('captchaQuestion').innerText = num1 + " + " + num2 + " = ?";
+            document.getElementById('captchaAnswer').value = num1 + num2;
         }
-    </style>
+
+        function validateCaptcha() {
+            let userAnswer = document.getElementById('userCaptcha').value;
+            let correctAnswer = document.getElementById('captchaAnswer').value;
+
+            if (userAnswer == correctAnswer) {
+                window.location.href = "https://kitsastudiooffical.github.io/";
+            } else {
+                alert("Incorrect CAPTCHA. Please try again.");
+                return false;
+            }
+        }
+
+        window.onload = generateCaptcha;
+    </script>
 </head>
 <body>
-    <div class="clock"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            var clock = $('.clock').FlipClock(10, {
-                countdown: true,
-                clockFace: 'MinuteCounter',
-                autoStart: false
-            });
-
-            // Запуск таймера через 1 секунду
-            setTimeout(function() {
-                clock.start();
-            }, 1000);
-        });
-    </script>
+    <p>sCaptcha</p>
+    <h2>Enter CAPTCHA</h2>
+    <form onsubmit="return validateCaptcha();">
+        <p id="captchaQuestion"></p>
+        <input type="text" id="userCaptcha" required>
+        <input type="hidden" id="captchaAnswer">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
